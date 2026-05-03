@@ -75,6 +75,8 @@ Prediction Output
         ↓
 Streamlit Web Interface
 
+```
+
 ## Project Workflow
 
 1. Load heart sound audio files from the dataset
@@ -107,7 +109,6 @@ The Streamlit app allows users to:
 
 The trained model is **loaded dynamically from Hugging Face Hub** for scalability and version control.
 
----
 
 ## Project Structure
 
@@ -127,7 +128,7 @@ The trained model is **loaded dynamically from Hugging Face Hub** for scalabilit
 ```
 
 
----
+
 
 ## 📌 Key Learning Outcomes
 
@@ -139,7 +140,7 @@ The trained model is **loaded dynamically from Hugging Face Hub** for scalabilit
 - Model deployment with Streamlit  
 - Cloud-based model hosting with Hugging Face  
 
----
+
 
 ## 🔮 Future Improvements
 
@@ -149,7 +150,7 @@ The trained model is **loaded dynamically from Hugging Face Hub** for scalabilit
 - Support real-time audio recording  
 - Provide REST API for predictions  
 
----
+
 
 ## Acknowledgements
 
@@ -157,6 +158,5 @@ The trained model is **loaded dynamically from Hugging Face Hub** for scalabilit
 - [Librosa](https://librosa.org) & [TensorFlow](https://www.tensorflow.org) — for their excellent open-source libraries
 - [Streamlit](https://streamlit.io) & [Hugging Face](https://huggingface.co) — for making deployment accessible
 
----
 
 > If you found this project useful, feel free to ⭐ the repository!
