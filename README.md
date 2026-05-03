@@ -1,68 +1,71 @@
-# 🫀 Heart Murmur Detection Using Audio Signals & Deep Learning
+# Heart Murmur Detection Using Audio Signals & Deep Learning
 
-An end-to-end machine learning project that detects **heart murmurs from heart sound audio recordings** using **audio preprocessing, MFCC feature extraction, and an LSTM deep learning model**, deployed as an interactive **Streamlit web application**.
-
----
-
-## 🚀 Project Overview
-
-Heart murmurs are abnormal sounds during a heartbeat that may indicate underlying heart conditions. Early detection is crucial for timely diagnosis and treatment.  
-This project uses **audio signal processing and deep learning** to automatically classify heart sounds and assist in murmur detection.
-
-The system covers the **complete ML lifecycle**:
-- Data loading & preprocessing
-- Feature extraction
-- Model training with imbalance handling
-- Model deployment using Streamlit
-- Cloud-based model hosting via Hugging Face
+An end-to-end machine learning project that classifies heart sounds to detect murmurs using audio preprocessing, MFCC feature extraction, and an LSTM-based deep learning model — deployed as an interactive Streamlit web application.
 
 ---
 
-## 🎯 Aim
+## Project Overview
 
-To build and deploy a deep learning-based system that can analyze heart sound recordings and accurately detect heart murmurs from audio signals.
+Heart murmurs are abnormal sounds produced during a heartbeat cycle and can be early indicators of serious cardiovascular conditions. Timely detection plays a critical role in diagnosis and treatment planning.
 
----
+This project applies audio signal processing and deep learning to automate the classification of heart sounds, covering the complete ML pipeline:
 
-## 📂 Dataset
-
-- **Name:** Heartbeat Sound Dataset  
-- **Source:** Kaggle (Open Source)  
-- **Link:** https://www.kaggle.com/datasets/abdallahaboelkhair/heartbeat-sound  
-- **Format:** `.wav` audio files  
-
-### Classes Used
-- Artifact  
-- Murmur  
-- Normal  
-- Extrahls  
-- Extrastole  
-
-> Unlabelled audio files are used only for testing and inference.
+- Data loading and preprocessing
+- Feature extraction (MFCC)
+- Model training with class imbalance handling
+- Model deployment via Streamlit
+- Cloud-based model hosting on Hugging Face Hub
 
 ---
 
-## 🛠️ Tools & Technologies
+## Objective
 
-- **Programming Language:** Python  
-- **Audio Processing:** Librosa, NumPy  
-- **Deep Learning:** TensorFlow, Keras  
-- **Model Architecture:** LSTM  
-- **Feature Extraction:** MFCC  
-- **Web Framework:** Streamlit  
-- **Model Hosting:** Hugging Face Hub  
-- **Deployment:** Streamlit Cloud  
-- **Version Control:** Git & GitHub  
+To design and deploy a deep learning system capable of analyzing raw heart sound recordings and accurately classifying them to assist in automated murmur detection.
+---
+
+## Dataset
+
+| Property | Details |
+|----------|---------|
+| **Name** | Heartbeat Sound Dataset |
+| **Source** | Kaggle (Open Source) |
+| **Link** | [View Dataset](https://www.kaggle.com/datasets/abdallahaboelkhair/heartbeat-sound) |
+| **Format** | `.wav` audio files |
+
+**Classes Used:**
+- Normal
+- Murmur
+- Artifact
+- Extrahls
+- Extrastole
+
+> Unlabelled audio files are used exclusively for testing and inference.
 
 ---
 
-## 🧠 System Architecture
+## Tools & Technologies
+
+| Category | Tools |
+|----------|-------|
+| Language | Python |
+| Audio Processing | Librosa, NumPy |
+| Deep Learning | TensorFlow, Keras |
+| Model Architecture | LSTM |
+| Feature Extraction | MFCC |
+| Web Framework | Streamlit |
+| Model Hosting | Hugging Face Hub |
+| Deployment | Streamlit Cloud |
+| Version Control | Git & GitHub |
+
+---
+
+## System Architecture
 
 ```
 Audio Input (.wav / .mp3)
         ↓
 Audio Preprocessing
-(Sampling Rate + Duration Fix)
+(Sampling Rate Normalization + Duration Padding)
         ↓
 MFCC Feature Extraction
         ↓
@@ -71,35 +74,28 @@ LSTM Deep Learning Model
 Prediction Output
         ↓
 Streamlit Web Interface
-```
 
----
+## Project Workflow
 
-## 🔄 Project Workflow
+1. Load heart sound audio files from the dataset
+2. Normalize audio to a standard sampling rate (22,050 Hz)
+3. Pad or trim each file to a fixed duration (10 seconds)
+4. Extract MFCC features from the processed audio
+5. Compute class weights to address label imbalance
+6. Train the LSTM model using weighted loss
+7. Evaluate model performance on a held-out test set
+8. Upload the trained model to Hugging Face Hub
+9. Deploy the inference pipeline via Streamlit
 
-1. Load heart sound audio files  
-2. Standardize sampling rate (22,050 Hz)  
-3. Fix audio duration (10 seconds)  
-4. Extract MFCC features  
-5. Handle class imbalance using class weights  
-6. Train LSTM model  
-7. Evaluate model performance  
-8. Upload trained model to Hugging Face Hub  
-9. Deploy inference pipeline using Streamlit  
+## Handling Class Imbalance
 
----
+The dataset has an uneven distribution of class samples. Rather than resampling the data, **class weights** are computed and applied during training, causing the model to penalize misclassifications on minority classes more heavily.
 
-## 📊 Handling Class Imbalance
+**Why this approach?**
+- Retains all original data without synthetic augmentation
+- Reduces the risk of overfitting
+- Particularly well-suited for medical and clinical datasets
 
-The dataset is naturally imbalanced.  
-Instead of oversampling or undersampling, **class weights** are used during training so that minority classes contribute more to the loss function.
-
-This approach:
-- Preserves original data  
-- Reduces overfitting  
-- Is suitable for medical datasets  
-
----
 
 ## 🌐 Web Application (Streamlit)
 
@@ -113,22 +109,23 @@ The trained model is **loaded dynamically from Hugging Face Hub** for scalabilit
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
-├── app.py
+├── app.py                  # Streamlit application entry point
+├── config.py               # Project-wide configuration constants
+├── requirements.txt        # Python dependencies
 ├── model/
-│   └── loader.py
+│   └── loader.py           # Model loading from Hugging Face Hub
 ├── audio/
-│   └── preprocessing.py
+│   └── preprocessing.py    # Audio normalization and feature extraction
 ├── ui/
-│   └── visualizations.py
+│   └── visualizations.py   # Waveform and prediction display components
 ├── utils/
-│   └── logger.py
-├── config.py
-├── requirements.txt
+│   └── logger.py           # Logging utilities
 └── README.md
 ```
+
 
 ---
 
@@ -154,26 +151,11 @@ The trained model is **loaded dynamically from Hugging Face Hub** for scalabilit
 
 ---
 
-## 👨‍🎓 Ideal For
+## Acknowledgements
 
-- Machine Learning Students  
-- Deep Learning Beginners  
-- Medical AI Projects  
-- Audio Signal Processing Learning  
-
----
-
-## 📜 License
-
-This project is open-source and intended for **educational purposes only**.
-
----
-
-## ⭐ Acknowledgements
-
-- Kaggle for the open-source dataset  
-- Librosa & TensorFlow communities  
-- Streamlit & Hugging Face teams  
+- [Kaggle](https://www.kaggle.com) — for providing the open-source heartbeat dataset
+- [Librosa](https://librosa.org) & [TensorFlow](https://www.tensorflow.org) — for their excellent open-source libraries
+- [Streamlit](https://streamlit.io) & [Hugging Face](https://huggingface.co) — for making deployment accessible
 
 ---
 
